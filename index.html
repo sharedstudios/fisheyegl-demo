@@ -1,0 +1,98 @@
+<html>
+  <head>
+    <title>FisheyeGl Demo</title>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <!-- <script src="../node_modules/jquery/dist/jquery.min.js"></script> -->
+    <!-- <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script> -->\
+    <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <!-- <script src="../node_modules/exif-js/exif.js"></script> -->
+    <script src="https://mapknitter.org/lib/exif-js/exif.js"></script>
+
+    <script src="urlHash.js"></script>
+    <link href="example.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="container">
+
+    <div>
+      <h1>Lens distortion removal</h1>
+      <p>FisheyeGL is an <a href="https://github.com/jywarren/fisheyegl">open source</a> tool by <a href="https://publiclab.org">Public Lab</a> for removing lens distortion from photographs, from a WebGL enabled browser. <a href="javascript:void();" onClick="$('#docs').toggle()">Read more</a></p>
+    </div>
+
+    <br />
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <canvas width="800" height="480" id="grid"></canvas>
+        <canvas width="800" height="480" id="canvas"></canvas>
+      </div> 
+      <div class="col-md-6">
+
+        <p id="display">
+          scale: <span class="scale"></span>,
+          k3: <span class="k3"></span>,
+          k5: <span class="k5"></span>,
+          k7: <span class="k7"></span>
+          zoom: <span class="zoom"></span>
+          zoomAnchorX: <span class="zoomAnchorX"></span>
+          zoomAnchorY: <span class="zoomAnchorY"></span>
+          shiftX: <span class="shiftX"></span>
+          shiftY: <span class="shiftY"></span>
+        </p>
+        <p class="exif-camera"></p>
+        <p><a onClick="$('.exif').toggle();">Show full EXIF data</a></p>
+        <textarea class="exif" style="width:100%;height:300px;display:none;"></textarea>
+        <p>Drag a new image from your desktop onto the old one to run the correction on a new image. Right-click image to download.</p>
+        <p>Use the sliders to adjust the correction.</p>
+        <dl>
+          <dt>scale</dt>
+          <dd>
+            <input id="scale" type="range" min="-100.0" max="100.0" value="0.0" step="0.1"/>
+            <span id="scale_label"></span>
+          </dd>
+          <dt>k3</dt>
+          <dd><input id="k3" type="range" min="-100.0" max="100.0" value="0.0" step="0.01"/></dd>
+          <dt>k5</dt>
+          <dd><input id="k5" type="range" min="-100.0" max="100.0" value="0.0" step="0.01"/></dd>
+          <dt>k7</dt>
+          <dd><input id="k7" type="range" min="-100.0" max="100.0" value="0.0" step="0.01"/></dd>
+          <dt>zoom</dt>
+          <dd><input id="zoom" type="range" min="1" max="4" value="1.0" step="0.01"/></dd>
+          <dt>zoomAnchorX</dt>
+          <dd><input id="zoomAnchorX" type="range" min="0" max="1" value="0.5" step="0.01"/></dd>
+          <dt>zoomAnchorY</dt>
+          <dd><input id="zoomAnchorY" type="range" min="0" max="1" value="0.5" step="0.01"/></dd>
+          <dt>shiftX</dt>
+          <dd><input id="shiftX" type="range" min="-100.0" max="100.0" value="0.0" step="0.01"/></dd>
+          <dt>shiftY</dt>
+          <dd><input id="shiftY" type="range" min="-100.0" max="100.0" value="0.0" step="0.01"/></dd>
+        </dl>
+      </div>
+      <video
+        crossorigin="anonymous"
+        src="./sample-1.mp4"
+        type="video/mp4"
+        autoplay="true"
+        id="video">
+      </video>
+    </div>
+
+    <br style="clear:both;" />
+    <hr />
+
+    <footer>
+      <p>This <a href="https://publiclab.org">Public Lab</a> project is supported in part by <a href="https://science.nasa.gov/stem-activation-team">NASA</a> through <a href="https://www.globe.gov/web/aren-project/">the AREN project</a>.</p>
+    </footer>
+
+    <script src="./fisheyegl.js"></script>
+    <script src="main.js"></script>
+
+  </body>
+</html>
